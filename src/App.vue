@@ -4,19 +4,11 @@ import { ref } from 'vue'
 const gameGrid = ref(Array(9).fill(null))
 const playerTurn = ref(true)
 
-const handleCellClick = (cell: any, index: number) => {
-  console.log(cell, index, gameGrid.value[index], playerTurn.value)
-
-  // check cell isnt already filled
+const handleCellClick = (index: number) => {
   if(gameGrid.value[index] != null) return
-
-  // assign cell value based on turn
   const cellValue = playerTurn.value ? 1 : 0
 
-  // return cell value
   gameGrid.value[index] = cellValue
-  
-  //update player turn
   playerTurn.value = !playerTurn.value
 }
 </script>
@@ -25,7 +17,7 @@ const handleCellClick = (cell: any, index: number) => {
   <div class="wrapper">
     <p>Sandbox</p>
     <div class="gameGrid">
-      <div v-for="(cell, index) in gameGrid" :key="index" class="gameCell" @click="() => handleCellClick(cell, index)">
+      <div v-for="(cell, index) in gameGrid" :key="index" class="gameCell" @click="() => handleCellClick(index)">
         {{ cell }}
       </div>
     </div>
