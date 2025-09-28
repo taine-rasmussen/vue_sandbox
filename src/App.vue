@@ -2,13 +2,17 @@
 import { ref } from 'vue'
 
 const gameGrid = ref(Array(9).fill(0))
+
+const handleCellClick = (cell: any, index: number) => {
+  console.log(cell, index)
+}
 </script>
 
 <template>
   <div class="wrapper">
     <p>Sandbox</p>
     <div class="gameGrid">
-      <div v-for="(cell, index) in gameGrid" :key="index" class="gameCell">
+      <div v-for="(cell, index) in gameGrid" :key="index" class="gameCell" @click="() => handleCellClick(cell, index)">
         {{ cell }}
       </div>
     </div>
@@ -17,7 +21,7 @@ const gameGrid = ref(Array(9).fill(0))
 
 <style scoped>
 p {
-  color: red;
+  color: salmon;
   font-weight: bold;
 }
 
@@ -39,7 +43,7 @@ p {
 
 .gameCell {
   display: flex;
-  border: 1px solid blue;
+  border: 3px solid lightyellow;
   aspect-ratio: 1 / 1; 
   align-items: center;
   justify-content: center;
