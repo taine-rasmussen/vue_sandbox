@@ -1,10 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const gameGrid = ref(Array(9).fill(0))
+const gameGrid = ref(Array(9).fill(null))
+const playerTurn = ref(true)
 
 const handleCellClick = (cell: any, index: number) => {
-  console.log(cell, index)
+  console.log(cell, index, gameGrid.value[index], playerTurn.value)
+
+  // check cell isnt already filled
+  if(gameGrid.value[index] != null) return
+
+  // assign cell value based on turn
+  const cellValue = playerTurn.value ? 1 : 0
+
+  // return cell value
+  gameGrid.value[index] = cellValue
+  
+  //update player turn
+  playerTurn.value = !playerTurn.value
 }
 </script>
 
