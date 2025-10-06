@@ -3,14 +3,21 @@ import { ref } from 'vue'
 
 const gameGrid = ref(Array(9).fill(null))
 const playerTurn = ref(true)
+// const isGameActive = ref(true)
+
+
+// const checkForGameWinConditions = () => {
+
+// }
 
 const handleCellClick = (index: number) => {
   if(gameGrid.value[index] != null) return
-  const cellValue = playerTurn.value ? 1 : 0
+  const cellValue = playerTurn.value ? 'X' : 'O'
 
   gameGrid.value[index] = cellValue
   playerTurn.value = !playerTurn.value
 }
+
 </script>
 
 <template>
@@ -52,7 +59,9 @@ p {
   aspect-ratio: 1 / 1; 
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 5rem;
+  font-weight: bold;
+  color: lightskyblue;
   border-radius: 10%;
 }
 </style>
